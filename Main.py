@@ -59,3 +59,35 @@ class Role:
 
     def bust(self):
         return self.get_val('min') > 21
+
+
+class CardDealer:
+    def __init__(self):
+        self.cards = []
+        all_card_types = '♠♥♣♦'
+        all_card_texts = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2']
+        all_card_value = [11, 10, 10, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+
+        for card_type in all_card_types:
+            for index, card_text in enumerate(all_card_texts)   
+                card = Card(card_type, card_text, card_value[index])
+                self.card.append(card)
+
+    #cards shuffle
+        for card_type
+        random.shuffle(self.card)
+
+    def send_card(self, role, num = 1):
+        """
+        send card to player or computer
+        Parameters:
+        role: Role
+        num: int
+            send just one card
+        """
+
+        for i in range(num):
+            card = self.cards.pop()
+            role.cards. append(card)
+
+
