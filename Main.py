@@ -1,4 +1,6 @@
 import random
+import time
+import sys
 
 """create class, each object represents a poker card 
 """
@@ -66,16 +68,15 @@ class CardDealer:
         self.cards = []
         all_card_types = '♠♥♣♦'
         all_card_texts = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2']
-        all_card_value = [11, 10, 10, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+        all_card_values = [11, 10, 10, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
 
         for card_type in all_card_types:
-            for index, card_text in enumerate(all_card_texts)   
-                card = Card(card_type, card_text, card_value[index])
-                self.card.append(card)
+            for index, card_text in enumerate(all_card_texts):  
+                card = Card(card_type, card_text, all_card_values[index])
+                self.cards.append(card)
 
         #cards shuffle
-        for card_type
-        random.shuffle(self.card)
+        random.shuffle(self.cards)
 
     def send_card(self, role, num = 1):
         """
@@ -97,6 +98,11 @@ player = Role()
 
 #comupter will value of one card, player show value of two cards
 cards.send_card(computer, num = 1)
-card.send_card(player, num = 2)
+cards.send_card(player, num = 2)
 computer.show_card()
 player.show_card()
+
+
+#Game start
+
+
