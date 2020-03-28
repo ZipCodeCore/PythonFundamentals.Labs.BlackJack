@@ -46,18 +46,18 @@ class Role:
         sum_cards = 0
         "The quantity of 'A' in hand"
         A = 0
-        for card in self.card:
-            sum_cards = card.card_value
+        for card in self.cards:
+            sum_cards += card.card_value
             # sum of quanity of 'A'
             if card.card_text == 'A':
                 A += 1
 
-            elif max_or_min == "max":
-                for x in range(A):
-                    value = sum_cards - x*10
-                    if  value > 21:
-                        return value
-            return sum_cards - A*10
+        if max_or_min == "max":
+            for x in range(A):
+                value = sum_cards - x*10
+                if value <= 21:
+                    return value
+        return sum_cards - A * 10
 
     def bust(self):
         return self.get_val('min') > 21
@@ -104,5 +104,48 @@ player.show_card()
 
 
 #Game start
+#Ask player to send cards, if player hit, cointue, if player stand, stop
+while(True):
+    choice = input('Hit or Stand? (H/S)')
+    if choice.upper() == 'H':
+        cards.send_card(player)
+        computer.show_card()
+        player.show_card()
+
+        if player.bust():
+            print ('Player bust! You lost!')
+            sys.exit()
+    elif choice.upper() == 'S':
+         break
+    else:
+        print('Invalid input, please enter: H/S')
+        choice
+
+#When player stand, if dealer value is less than 17, 
+#will continue hit, if value between 12 ~ 21, stop
+while(True):
+    print('Dealing......')
+    #set a time gap here to send card
+    time.sleep(1)
+    cards.send_card(computer)
+    computer.show_card()
+    player.show_card()
+    if computer.bust():
+        print('Dealer bust! You win!')
+        sys.exit()
+    elif computer.get_val('max') >= 17:
+        break
+
+player_val = player.get_val('max')
+computer_val = computer.get_val('max')
+
+if player_val > computer_val:
+    print('You win!')
+elif player_val == computer_val:
+    print('Push!')
+else:
+    print('You lost!')
 
 
+if __name__ == '__main__':
+    pass
