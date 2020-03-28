@@ -73,13 +73,13 @@ class CardDealer:
                 card = Card(card_type, card_text, card_value[index])
                 self.card.append(card)
 
-    #cards shuffle
+        #cards shuffle
         for card_type
         random.shuffle(self.card)
 
     def send_card(self, role, num = 1):
         """
-        send card to player or computer
+        Send card to player or computer
         Parameters:
         role: Role
         num: int
@@ -91,3 +91,12 @@ class CardDealer:
             role.cards. append(card)
 
 
+cards = CardDealer()
+computer = Role()
+player = Role()
+
+#comupter will value of one card, player show value of two cards
+cards.send_card(computer, num = 1)
+card.send_card(player, num = 2)
+computer.show_card()
+player.show_card()
