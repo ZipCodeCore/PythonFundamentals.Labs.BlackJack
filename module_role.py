@@ -7,9 +7,7 @@ class Role:
         self.cards = []
 
     def show_card(self):
-        for card in self.cards:
-            print(card.card_type, card.card_text, sep='', end='')
-        print()
+        return (''.join([''.join([card.card_type, card.card_text]) for card in self.cards]))
 
     def get_val(self, max_or_min):
         """
@@ -41,3 +39,5 @@ class Role:
 
     def bust(self):
         return self.get_val('min') > 21
+
+
