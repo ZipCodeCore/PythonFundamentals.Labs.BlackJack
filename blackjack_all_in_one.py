@@ -6,7 +6,7 @@ all_card_types = '♠♥♣♦'
 all_card_texts = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2']
 all_card_values = [11, 10, 10, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2]
 
-class Card:
+class Card():
     def __init__(self, card_type, card_text, card_value):
         """
         Parameters:
@@ -24,7 +24,7 @@ class Card:
         self.card_value = card_value
 
 
-class Role:
+class Role():
     def __init__(self):
         """
         Create a empty list to save cards from each role (player or computer)
@@ -32,9 +32,11 @@ class Role:
         self.cards = []
 
     def show_card(self):
-        for card in self.cards:
-            print(card.card_type, card.card_text, sep='', end='')
-        print()
+        return (''.join([''.join([card.card_type, card.card_text]) for card in self.cards]))
+        # for card in self.cards:
+            # print(card.card_type, card.card_text, sep='', end='')
+        #print()
+
 
     def get_val(self, max_or_min):
         """
@@ -68,12 +70,9 @@ class Role:
         return self.get_val('min') > 21
 
 
-class CardDealer:
+class CardDealer():
     def __init__(self):
         self.cards = []
-        all_card_types = '♠♥♣♦'
-        all_card_texts = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2']
-        all_card_values = [11, 10, 10, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2]
 
         for card_type in all_card_types:
             for index, card_text in enumerate(all_card_texts):  
@@ -113,14 +112,16 @@ if __name__ == '__main__':
     # comupter will value of one card, player show value of two cards
     cards.send_card(computer, num=1)
     cards.send_card(player, num=2)
-    computer.show_card()
-    player.show_card()
+    print(computer.show_card())
+    print(player.show_card())
+    # computer.show_card()
+    # player.show_card()
     while (True):
         choice = input('Hit or Stand? (H/S)')
         if choice.upper() == 'H':
             cards.send_card(player)
-            computer.show_card()
-            player.show_card()
+            print(computer.show_card())
+            print(player.show_card())
 
             if player.bust():
                 print('Player bust! You lost!')
@@ -138,8 +139,8 @@ if __name__ == '__main__':
         # set a time gap here to send card
         time.sleep(1)
         cards.send_card(computer)
-        computer.show_card()
-        player.show_card()
+        print(computer.show_card())
+        print(player.show_card())
         if computer.bust():
             print('Dealer bust! You win!')
             sys.exit()
