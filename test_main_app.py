@@ -1,7 +1,7 @@
 import unittest
 import sys
-# from blackjack_all_in_one import *
-from main_app import *
+from blackjack_all_in_one import *
+# from main_app import *
 
 class CardTestCase(unittest.TestCase):
     """Unit tests for Card class"""
@@ -28,30 +28,30 @@ class CardTestCase(unittest.TestCase):
     def test_get_val(self):
         player = Role()
         player.cards = [Card("♦", "4", 4), Card("♣", "5", 5), Card("♣", "10", 10)]
-        self.assertEqual(player.get_val(19), 19)
+        self.assertEqual(player.get_val('max'), 19)
         player.cards = [Card("♥", "K", 10), Card("♣", "10", 10)]
-        self.assertEqual(player.get_val(20), 20)
+        self.assertEqual(player.get_val('max'), 20)
         player.cards = [Card("♠", "Q", 10), Card("♣", "10", 10), Card("♣", "A", 11)]
-        self.assertEqual(player.get_val(21), 21)
+        self.assertEqual(player.get_val('max'), 21)
         player.cards = [Card("♦", "7", 7), Card("♦", "A", 11), Card("♣", "10", 10)]
-        self.assertTrue(player.get_val(18), 28)
-
-        # player.cards = [Card("♣", "A", 1), Card("♦", "A", 1), Card("♠", "J", 10)]
-        # self.assertEqual(player.get_val(12), 12)
-        # player.cards = [Card("♣", "A", 11), Card("♣", "10", 10)]
-        # self.assertEqual(player.get_val(21), 21)
+        self.assertTrue(player.get_val('max'), 28)
+        player.cards = [Card("♣", "A", 11), Card("♦", "A", 11), Card("♠", "J", 10)]
+        self.assertEqual(player.get_val('max'), 12)
+        player.cards = [Card("♣", "A", 11), Card("♣", "10", 10)]
+        self.assertEqual(player.get_val('max'), 21)
 
     def test_bust(self):
         player = Role()
         player.cards = [Card("♦", "7", 7), Card("♦", "5", 5), Card("♣", "10", 10)]
-        self.assertEqual(player.bust(), 22)
-        # player.cards = [Card("♦", "7", 7), Card("♦", "A", 11), Card("♣", "10", 10)]
-        # self.assertFalse(player.bust(20), 18)
+        self.assertTrue(player.bust())
+        player.cards = [Card("♦", "7", 7), Card("♦", "A", 11), Card("♣", "10", 10)]
+        self.assertFalse(player.bust())
 
+    def
 
-    def test_send_card(self):
-        computer = Role()
-        computer.cards =
+    # def test_send_card(self):
+    #     computer = Role()
+    #     computer.cards =
 
 
  # if __name__ == '__main__':
