@@ -2,8 +2,8 @@ import unittest
 # from blackjack_all_in_one import *
 from main_app import *
 
+
 class CardTestCase(unittest.TestCase):
-    """Unit tests for Card class"""
 
     def test_card_validity(self):
         with self.assertRaises(AssertionError):
@@ -15,6 +15,7 @@ class CardTestCase(unittest.TestCase):
 
 
 class RoleTestCase(unittest.TestCase):
+
     def test_show_card(self):
         player = Role()
         computer = Role()
@@ -51,6 +52,7 @@ class RoleTestCase(unittest.TestCase):
 
 
 class CardDealerTestCase(unittest.TestCase):
+
     def test_size_of_cards(self):
         dealer = CardDealer()
         self.assertEqual(len(dealer.cards), 52)
