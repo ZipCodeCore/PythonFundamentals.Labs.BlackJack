@@ -93,7 +93,7 @@ class CardDealer():
 
         for i in range(num):
             card = self.cards.pop()
-            role.cards. append(card)
+            role.cards.append(card)
 
 
 cards = CardDealer()
@@ -101,15 +101,10 @@ computer = Role()
 player = Role()
 
 
-
-
-
-
-
 if __name__ == '__main__':
     # Game start
-    # Ask player to send cards, if player hit, cointue, if player stand, stop
-    # comupter will value of one card, player show value of two cards
+    # Ask player to send cards, if player hit, continue, if player stand, stop
+    # Comupter will show value of one card, player show value of two cards
     cards.send_card(computer, num=1)
     cards.send_card(player, num=2)
     print(computer.show_card())
