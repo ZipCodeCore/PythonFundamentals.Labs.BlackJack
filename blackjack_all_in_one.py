@@ -2,20 +2,25 @@ import random
 import time
 import sys
 
-"""create class, each object represents a poker card 
-"""
-
+all_card_types = '♠♥♣♦'
+all_card_texts = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2']
+all_card_values = [11, 10, 10, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2]
 
 class Card:
     def __init__(self, card_type, card_text, card_value):
         """
         Parameters:
         card_type:str card type：（spades, hearts，clubs，diamonds）
-        card_text:str ('A','J','Q','K')
-        card_value:int（'A' equal 1 or 11，J, Q, K equal 10=）
+        card_text:str ('A','J','Q','K','10', '9', '8', '7', '6', '5', '4', '3', '2', '1')
+        card_value:int（'A' equal 1 or 11，J, Q, K equal 10）
         """
+        assert card_type in all_card_types
         self.card_type = card_type
+
+        assert card_text in all_card_texts
         self.card_text = card_text
+
+        assert card_value in all_card_values
         self.card_value = card_value
 
 
@@ -68,7 +73,7 @@ class CardDealer:
         self.cards = []
         all_card_types = '♠♥♣♦'
         all_card_texts = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2']
-        all_card_values = [11, 10, 10, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+        all_card_values = [11, 10, 10, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2]
 
         for card_type in all_card_types:
             for index, card_text in enumerate(all_card_texts):  
@@ -96,56 +101,57 @@ cards = CardDealer()
 computer = Role()
 player = Role()
 
-#comupter will value of one card, player show value of two cards
-cards.send_card(computer, num = 1)
-cards.send_card(player, num = 2)
-computer.show_card()
-player.show_card()
 
 
-#Game start
-#Ask player to send cards, if player hit, cointue, if player stand, stop
-while(True):
-    choice = input('Hit or Stand? (H/S)')
-    if choice.upper() == 'H':
-        cards.send_card(player)
-        computer.show_card()
-        player.show_card()
 
-        if player.bust():
-            print ('Player bust! You lost!')
-            sys.exit()
-    elif choice.upper() == 'S':
-         break
-    else:
-        print('Invalid input, please enter: H/S')
-        choice
 
-#When player stand, if dealer value is less than 17, 
-#will continue hit, if value between 12 ~ 21, stop
-while(True):
-    print('Dealing......')
-    #set a time gap here to send card
-    time.sleep(1)
-    cards.send_card(computer)
-    computer.show_card()
-    player.show_card()
-    if computer.bust():
-        print('Dealer bust! You win!')
-        sys.exit()
-    elif computer.get_val('max') >= 17:
-        break
-
-player_val = player.get_val('max')
-computer_val = computer.get_val('max')
-
-if player_val > computer_val:
-    print('You win!')
-elif player_val == computer_val:
-    print('Push!')
-else:
-    print('You lost!')
 
 
 if __name__ == '__main__':
-    pass
+    # Game start
+    # Ask player to send cards, if player hit, cointue, if player stand, stop
+    # comupter will value of one card, player show value of two cards
+    cards.send_card(computer, num=1)
+    cards.send_card(player, num=2)
+    computer.show_card()
+    player.show_card()
+    while (True):
+        choice = input('Hit or Stand? (H/S)')
+        if choice.upper() == 'H':
+            cards.send_card(player)
+            computer.show_card()
+            player.show_card()
+
+            if player.bust():
+                print('Player bust! You lost!')
+                sys.exit()
+        elif choice.upper() == 'S':
+            break
+        else:
+            print('Invalid input, please enter: H/S')
+            choice
+
+    # When player stand, if dealer value is less than 17,
+    # will continue hit, if value between 12 ~ 21, stop
+    while (True):
+        print('Dealing......')
+        # set a time gap here to send card
+        time.sleep(1)
+        cards.send_card(computer)
+        computer.show_card()
+        player.show_card()
+        if computer.bust():
+            print('Dealer bust! You win!')
+            sys.exit()
+        elif computer.get_val('max') >= 17:
+            break
+
+    player_val = player.get_val('max')
+    computer_val = computer.get_val('max')
+
+    if player_val > computer_val:
+        print('You win!')
+    elif player_val == computer_val:
+        print('Push!')
+    else:
+        print('You lost!')
