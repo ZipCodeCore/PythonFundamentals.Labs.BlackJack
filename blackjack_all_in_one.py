@@ -79,7 +79,6 @@ class CardDealer():
                 card = Card(card_type, card_text, all_card_values[index])
                 self.cards.append(card)
 
-        #cards shuffle
         random.shuffle(self.cards)
 
     def send_card(self, role, num = 1):
