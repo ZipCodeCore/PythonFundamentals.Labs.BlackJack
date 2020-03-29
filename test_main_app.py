@@ -1,7 +1,6 @@
 import unittest
-import sys
-from blackjack_all_in_one import *
-# from main_app import *
+# from blackjack_all_in_one import *
+from main_app import *
 
 class CardTestCase(unittest.TestCase):
     """Unit tests for Card class"""
@@ -14,6 +13,8 @@ class CardTestCase(unittest.TestCase):
         with self.assertRaises(AssertionError):
             card = Card("♦", "8", 17)
 
+
+class RoleTestCase(unittest.TestCase):
     def test_show_card(self):
         player = Role()
         computer = Role()
@@ -40,6 +41,7 @@ class CardTestCase(unittest.TestCase):
         player.cards = [Card("♣", "A", 11), Card("♣", "10", 10)]
         self.assertEqual(player.get_val('max'), 21)
 
+
     def test_bust(self):
         player = Role()
         player.cards = [Card("♦", "7", 7), Card("♦", "5", 5), Card("♣", "10", 10)]
@@ -47,12 +49,32 @@ class CardTestCase(unittest.TestCase):
         player.cards = [Card("♦", "7", 7), Card("♦", "A", 11), Card("♣", "10", 10)]
         self.assertFalse(player.bust())
 
-    def
 
-    # def test_send_card(self):
-    #     computer = Role()
-    #     computer.cards =
+class CardDealerTestCase(unittest.TestCase):
+    def test_size_of_cards(self):
+        dealer = CardDealer()
+        self.assertEqual(len(dealer.cards), 52)
 
 
- # if __name__ == '__main__':
-#  #     unittest.main()
+    def test_shuffle_cards(self):
+        computer1 = CardDealer()
+        computer2 = CardDealer()
+        self.assertNotEqual(computer1.cards, computer2.cards)
+
+
+    def test_deal_remove_a_card(self):
+        computer = CardDealer()
+        player = Role()
+        num_bf = len(computer.cards)
+        computer.send_card(player)
+        num_af = len(computer.cards)
+        self.assertEqual(num_bf, num_af + 1)
+
+
+    def test_player_receive_a_card(self):
+        computer = CardDealer()
+        player = Role()
+        player_num_bf = len(player.cards)
+        computer.send_card(player)
+        player_num_af = len(player.cards)
+        self.assertEqual(player_num_bf, player_num_af - 1)
