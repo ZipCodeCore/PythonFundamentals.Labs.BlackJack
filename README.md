@@ -14,7 +14,7 @@
 * Use branches
 * Merge branches by first opening and reviewing pull requests
 
-Project Description
+### Project Description
 
 - BlackJack_Game
 
